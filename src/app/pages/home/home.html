@@ -1,0 +1,22 @@
+<h1>Libros Disponibles</h1>
+@if (loading) {<p>Cargando libros...</p>} @else if (error) {<p>{{ error }}</p>} @else {
+<section class="books">
+	@for (book of books; track book.book_id) {
+	<article class="book">
+		<h3>{{ book.title }}</h3>
+		<p>
+			<strong>Categoría:</strong>
+			{{ book.category }}
+		</p>
+		<p>
+			<strong>Autor:</strong>
+			{{ book.Author.name }}
+		</p>
+		<p>
+			<strong>Stock:</strong>
+			{{ book.stock }}
+		</p>
+	</article>
+	}
+</section>
+}

@@ -1,0 +1,21 @@
+header,
+main,
+footer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+}
+header,
+footer {
+	height: 14vh;
+	background-color: var(--blue-first);
+}
+
+header {
+	position: fixed;
+}
+main {
+	margin-top: 14vh;
+}
