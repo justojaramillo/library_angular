@@ -1,0 +1,20 @@
+.home_grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-column-gap: 25px;
+	grid-row-gap: 25px;
+	width: 100%;
+	justify-items: center;
+	margin: 6vh 0;
+}
+@media (max-width: 1024px) {
+	.home_grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 768px) {
+	.home_grid {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}

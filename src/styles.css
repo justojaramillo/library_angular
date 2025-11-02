@@ -19,8 +19,23 @@ body {
 	width: 100vw;
 	background-color: var(--background);
 	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-	font-size: x-large;
+	font-size: large;
 }
 a {
 	text-decoration: none;
+}
+
+.parent_container {
+	width: clamp(1024px, 100vw, 1152px);
+	margin: 20px 0;
+}
+@media (max-width: 1024px) {
+	.parent_container {
+		width: clamp(768px, 100vw, 1024px);
+	}
+}
+@media (max-width: 768px) {
+	.parent_container {
+		width: clamp(480px, 100vw, 768px);
+	}
 }

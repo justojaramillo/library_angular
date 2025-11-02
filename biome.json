@@ -7,14 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": true,
-		"includes": [
-			"**",
-			"!node_modules",
-			"!.next",
-			"!dist",
-			"!build",
-			"!.angular"
-		]
+		"includes": ["**", "!node_modules", "!.next", "!dist", "!build", "!.angular"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -38,7 +31,11 @@
 	},
 	"html": {
 		"formatter": {
-			"enabled": true
+			"enabled": true,
+			"attributePosition": "auto",
+			"indentStyle": "tab",
+			"indentWidth": 2,
+			"lineWidth": 130
 		},
 		"experimentalFullSupportEnabled": true,
 		"linter": {

@@ -10,15 +10,6 @@ export interface Author {
 	books_count: number;
 }
 
-export interface Book {
-	book_id: number;
-	title: string;
-	isbn: string;
-	category: string;
-	stock: number;
-	price: string;
-	author: Author;
-}
 export interface Meta {
 	current_page: number;
 	from: number;
@@ -34,7 +25,7 @@ export interface Links {
 	next: string;
 }
 export interface Data {
-	data: Book[];
+	data: Author[];
 	links: Links;
 	meta: Meta;
 }
@@ -42,12 +33,12 @@ export interface Data {
 @Injectable({
 	providedIn: 'root',
 })
-export class Booksservice {
-	private url = 'http://localhost:8000/api/books';
+export class Authorsservice {
+	private url = 'http://localhost:8000/api/authors';
 
 	constructor(private http: HttpClient) {}
 
-	getBooks(): Observable<Data> {
+	getAuthors(): Observable<Data> {
 		return this.http.get<Data>(this.url);
 	}
 }

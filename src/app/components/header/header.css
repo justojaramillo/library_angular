@@ -3,8 +3,6 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: 1152px;
-	max-width: 1152px;
 }
 .header_nav__links a {
 	display: inline-block;
@@ -16,7 +14,12 @@
 .header_nav__links a:hover {
 	background-color: var(--blue-third);
 }
-.header_img {
+
+.header_menu {
+	display: none;
+}
+.header_img,
+.header_menu__img {
 	height: auto;
-	width: 4vw;
+	width: 50px;
 }

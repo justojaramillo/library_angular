@@ -1,33 +1,45 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Book, Booksservice } from '../../services//booksservice'; // Ajusta la ruta
+import { Author, Authorsservice } from '../../services/authorsservice';
+import { Book, Booksservice } from '../../services//booksservice';
+import { Authorscard } from './authorscard/authorscard';
+import { Bookscard } from './bookscard/bookscard'; // Ajusta la ruta
 
 @Component({
 	selector: 'app-home',
 	standalone: true,
-	imports: [CommonModule],
+	imports: [CommonModule, Bookscard, Authorscard],
 	templateUrl: './home.html',
 	styleUrl: './home.css',
 })
 export class Home implements OnInit {
 	books: Book[] = [];
-	loading = true;
-	error: string | null = null;
+	authors: Author[] = [];
+	books_loading = true;
+	books_msg = 'No hay libros';
+	authors_loading = true;
+	authors_msg = 'No hay authores';
 
-	constructor(private booksService: Booksservice) {}
+	constructor(
+		private _booksService: Booksservice,
+		private _authosServices: Authorsservice,
+	) {}
 
 	ngOnInit() {
-		this.booksService.getBooks().subscribe({
-			next: (data) => {
-				console.log('✅ Datos recibidos del backend:', data);
-				this.books = data;
-				this.loading = false;
-			},
-			error: (err) => {
-				console.error('❌ Error cargando libros:', err);
-				this.error = 'Error al cargar los libros';
-				this.loading = false;
-			},
+		this.getBooks();
+		this.getAuthors();
+	}
+
+	public getBooks() {
+		this._booksService.getBooks().subscribe((res) => {
+			this.books = res.data;
+			this.books_loading = false;
+		});
+	}
+	public getAuthors() {
+		this._authosServices.getAuthors().subscribe((res) => {
+			this.authors = res.data;
+			this.authors_loading = false;
 		});
 	}
 }

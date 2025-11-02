@@ -1,1 +1,20 @@
-<p>login works!</p>
+<div class="parent_container">
+	<div class="library_img">
+		<img src="/library.png" alt="library image">
+	</div>
+	<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label for="email">Email</label>
+			<br>
+			<input class="login_input" type="email" name="email" formControlName="email" id="email" placeholder="name@company.com">
+			@if(email.invalid && email.touched) {<small>Email required or invalid email</small>}
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<br>
+			<input class="login_input" type="password" name="password" formControlName="password" id="password" placeholder="*********">
+			@if(password.invalid && password.touched) {<small>Password requear at least 6 characters</small>}
+		</div>
+		<button class="login_button" type="submit" [disabled]="loginForm.invalid">Log in</button>
+	</form>
+</div>
