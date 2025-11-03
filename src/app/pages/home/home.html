@@ -1,14 +1,20 @@
 <div class="parent_container">
 	<h2>Libros recomendados</h2>
-	@if (books_loading) {<p>Loading books...</p>} @else {
+	@if (booksLoading()) {<p>Loading books...</p>} @else if (booksError()) {
+	<p>
+		Error:
+		{{ booksError
+	() }}
+	</p>
+	} @else {
 	<section class="home_grid">
-		@for (book of books; track book.book_id) { <app-bookscard [book]="book"/>}
+		@for (book of books(); track book.book_id) { <app-bookscard-home [book]="book"/>}
 	</section>
 	}<h2>Authores reconocidos</h2>
-	@if (authors_loading) {<p>Loading authors</p>} @else {
+	@if (authorsLoading()) {<p>Loading authors</p>} @else if (authorsError()) {<p>Error: {{ authorsError() }}</p>} @else {
 	<section class="home_grid">
-		@for (author of authors; track author.author_id) {
-		<app-authorscard [author]="author"/>}
+		@for (author of authors(); track author.author_id) {
+		<app-authorscard-home [author]="author"/>}
 	</section>
 	}
 </div>

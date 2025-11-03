@@ -50,4 +50,7 @@ export class Booksservice {
 	getBooks(): Observable<Data> {
 		return this.http.get<Data>(this.url);
 	}
+	getBooksPaginated(page: number): Observable<Data> {
+		return this.http.get<Data>(`${this.url}?page=${page}`);
+	}
 }

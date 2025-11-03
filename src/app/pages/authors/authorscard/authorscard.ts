@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-	selector: 'app-authorscard-home',
+	selector: 'app-authorscard',
 	imports: [DatePipe],
 	templateUrl: './authorscard.html',
 	styleUrl: './authorscard.css',

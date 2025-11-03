@@ -1,0 +1,11 @@
+<div class="books_card">
+	<h2>
+		Title:
+		<br>
+		{{book.title}}
+	</h2>
+	<p>Category: {{book.category}}</p>
+	<p>Isbn: {{book.isbn}}</p>
+	<p>Stock: {{book.stock}}</p>
+	<p>Price: {{book.price | currency:'USD':'symbol':'1.2-2'}}</p>
+</div>

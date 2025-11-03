@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Author, Authorsservice } from '../../services/authorsservice';
+import { Authservice } from '../../services/authservice';
 import { Book, Booksservice } from '../../services//booksservice';
 import { Authorscard } from './authorscard/authorscard';
 import { Bookscard } from './bookscard/bookscard'; // Ajusta la ruta
@@ -13,17 +14,20 @@ import { Bookscard } from './bookscard/bookscard'; // Ajusta la ruta
 	styleUrl: './home.css',
 })
 export class Home implements OnInit {
-	books: Book[] = [];
-	authors: Author[] = [];
-	books_loading = true;
-	books_msg = 'No hay libros';
-	authors_loading = true;
-	authors_msg = 'No hay authores';
+	private auth = inject(Authservice);
+	private booksService = inject(Booksservice);
+	private authorsService = inject(Authorsservice);
 
-	constructor(
-		private _booksService: Booksservice,
-		private _authosServices: Authorsservice,
-	) {}
+	books = signal<Book[]>([]);
+	authors = signal<Author[]>([]);
+	booksLoading = signal(true);
+	authorsLoading = signal(true);
+	booksError = signal<string | null>(null);
+	authorsError = signal<string | null>(null);
+
+	constructor() {
+		console.log('home log: ', this.auth.isAuthenticated());
+	}
 
 	ngOnInit() {
 		this.getBooks();
@@ -31,15 +35,27 @@ export class Home implements OnInit {
 	}
 
 	public getBooks() {
-		this._booksService.getBooks().subscribe((res) => {
-			this.books = res.data;
-			this.books_loading = false;
+		this.booksService.getBooks().subscribe({
+			next: (res) => {
+				this.books.set(res.data);
+				this.booksLoading.set(false);
+			},
+			error: (err: Error) => {
+				this.booksError.set(err.message);
+				this.booksLoading.set(false);
+			},
 		});
 	}
 	public getAuthors() {
-		this._authosServices.getAuthors().subscribe((res) => {
-			this.authors = res.data;
-			this.authors_loading = false;
+		this.authorsService.getAuthors().subscribe({
+			next: (res) => {
+				this.authors.set(res.data);
+				this.authorsLoading.set(false);
+			},
+			error: (err: Error) => {
+				this.authorsError.set(err.message);
+				this.authorsLoading.set(false);
+			},
 		});
 	}
 }

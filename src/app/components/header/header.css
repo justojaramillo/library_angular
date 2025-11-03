@@ -14,7 +14,9 @@
 .header_nav__links a:hover {
 	background-color: var(--blue-third);
 }
-
+.header_nav__links > .logout {
+	cursor: pointer;
+}
 .header_menu {
 	display: none;
 }

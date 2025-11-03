@@ -1,1 +1,32 @@
-<p>authors works!</p>
+@if (loading()) {<p>Cargando autores...</p>} @else if (error()) {<p>Error: {{ error() }}</p>} @else if (authorsData()) {
+<section class="authors_grid">
+	@for (author of authorsData()!.data; track author.author_id) {
+	<app-authorscard [author]="author"/>}
+</section>
+
+<div class="pagination">
+	<div class="navigate_buttons">
+		<button
+			class="page_button"
+			(click)="changePage(authorsData()!.meta.current_page - 1)"
+			[disabled]="!authorsData()!.links.prev"
+		>
+			Anterior
+		</button>
+		@for (page of getPages(); track page) {
+		<button class="page_button" (click)="changePage(page)" [class.active]="page === authorsData()!.meta.current_page">
+			{{ page }}
+		</button>
+		}
+
+		<button
+			class="page_button"
+			(click)="changePage(authorsData()!.meta.current_page + 1)"
+			[disabled]="!authorsData()!.links.next"
+		>
+			Siguiente
+		</button>
+	</div>
+	<p>Página {{ authorsData()!.meta.current_page }}&nbsp;de {{ authorsData()!.meta.last_page }}</p>
+</div>
+}

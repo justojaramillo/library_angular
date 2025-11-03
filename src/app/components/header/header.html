@@ -7,7 +7,7 @@
 			<a routerLink="/">Home</a>
 			<a routerLink="/books">Books</a>
 			<a routerLink="/authors">Authors</a>
-			<a routerLink="/login">Login</a>
+			@if (isLoggedIn()) {<a class="logout" (click)="getLogout()">Logout</a>} @else {<a routerLink="/login">Login</a>}
 		</div>
 		<div class="header_menu">
 			<img class="header_menu__img" src="/menu.svg" alt="menu button">

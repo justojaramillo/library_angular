@@ -1,0 +1,25 @@
+.authors_grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-column-gap: 25px;
+	grid-row-gap: 25px;
+	width: 100%;
+	justify-items: center;
+	margin: 6vh 0;
+}
+.pagination {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+	width: 100%;
+	margin: 20px 0;
+}
+.page_button {
+	padding: 4px;
+	margin: 0 4px;
+	font-weight: bold;
+}
+.navigate_buttons {
+	margin: 4px 0;
+}

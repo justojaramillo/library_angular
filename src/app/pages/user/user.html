@@ -1,1 +1,33 @@
-<p>user works!</p>
+<div class="parent_container">
+	<h2 class="author_title">Autores</h2>
+
+	<form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+		<div class="form">
+			<div class="form_inputs">
+				<input type="text" placeholder="Nombre" formControlName="name">
+				<input type="text" placeholder="Nacionalidad" formControlName="nationality">
+				<input type="date" placeholder="Birth day" formControlName="birth_day">
+			</div>
+
+			<div>
+				<button class="buttons_crud" type="submit">{{ selectedAuthor ? 'Actualizar' : 'Crear' }}</button>
+				<button class="buttons_crud" type="button" (click)="resetForm()">Cancelar</button>
+			</div>
+		</div>
+	</form>
+	@if (message()) {<div class="message success">{{ message() }}</div>} @if (error()) {
+	<div class="message error">{{ error() }}</div>}
+
+	<section class="authors-grid">
+		@for (author of authors; track author.author_id) {
+		<div class="author-card">
+			<h3>{{ author.name }}</h3>
+			<p>{{ author.birth_day|date:'mediumDate' }}</p>
+			<p>{{ author.nationality || 'No nationality' }}</p>
+			<p>Books {{ author.books_count || 'No books' }}</p>
+			<button class="buttons_crud" (click)="editAuthor(author)">Editar</button>
+			<button class="buttons_crud" (click)="deleteAuthor(author.author_id!)">Eliminar</button>
+		</div>
+		}
+	</section>
+</div>

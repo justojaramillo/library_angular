@@ -1,1 +1,24 @@
-<p>books works!</p>
+@if (loading()) {<p>Cargando libros...</p>} @else if (error()) {<p>Error: {{ error() }}</p>} @else if (booksData()) {
+<section class="books_grid">
+	@for (book of booksData()!.data; track book.book_id) {
+	<app-bookscard [book]="book"/>}
+</section>
+
+<div class="pagination">
+	<div class="navigate_buttons">
+		<button class="page_button" (click)="changePage(booksData()!.meta.current_page - 1)" [disabled]="!booksData()!.links.prev">
+			Anterior
+		</button>
+		@for (page of getPages(); track page) {
+		<button class="page_button" (click)="changePage(page)" [class.active]="page === booksData()!.meta.current_page">
+			{{ page }}
+		</button>
+		}
+
+		<button class="page_button" (click)="changePage(booksData()!.meta.current_page + 1)" [disabled]="!booksData()!.links.next">
+			Siguiente
+		</button>
+	</div>
+	<p>Página {{ booksData()!.meta.current_page }}&nbsp;de {{ booksData()!.meta.last_page }}</p>
+</div>
+}

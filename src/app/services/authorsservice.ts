@@ -6,7 +6,7 @@ export interface Author {
 	author_id: number;
 	name: string;
 	nationality: string;
-	birth_day: Date;
+	birth_day: string;
 	books_count: number;
 }
 
@@ -30,6 +30,12 @@ export interface Data {
 	meta: Meta;
 }
 
+export interface ApiError {
+	message: string;
+	status: number;
+	errors?: unknown;
+}
+
 @Injectable({
 	providedIn: 'root',
 })
@@ -40,5 +46,21 @@ export class Authorsservice {
 
 	getAuthors(): Observable<Data> {
 		return this.http.get<Data>(this.url);
+	}
+	getAuthorsPaginated(page: number): Observable<Data> {
+		return this.http.get<Data>(`${this.url}?page=${page}`);
+	}
+	getAuthor(id: number): Observable<Author> {
+		return this.http.get<Author>(`${this.url}/${id}`);
+	}
+	createAuthor(author: Author): Observable<Author> {
+		const data = { name: author.name, nationality: author.nationality, birt_day: author.birth_day };
+		return this.http.post<Author>(this.url, data);
+	}
+	updateAuthor(id: number, author: Partial<Author>): Observable<Author> {
+		return this.http.put<Author>(`${this.url}/${id}`, author);
+	}
+	deleteAuthor(id: number): Observable<void> {
+		return this.http.delete<void>(`${this.url}/${id}`);
 	}
 }

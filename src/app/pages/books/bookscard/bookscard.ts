@@ -2,7 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-	selector: 'app-bookscard-home',
+	selector: 'app-bookscard',
 	imports: [CurrencyPipe],
 	templateUrl: './bookscard.html',
 	styleUrl: './bookscard.css',
