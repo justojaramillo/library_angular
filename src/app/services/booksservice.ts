@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { endpoints } from './endpoints';
 
 export interface Author {
 	author_id: number;
@@ -43,7 +44,8 @@ export interface Data {
 	providedIn: 'root',
 })
 export class Booksservice {
-	private url = 'http://localhost:8000/api/books';
+	//private url = 'http://localhost:8000/api/books';
+	private url = endpoints.books;
 
 	constructor(private http: HttpClient) {}
 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { endpoints } from './endpoints';
 
 export interface Author {
 	author_id: number;
@@ -40,7 +41,8 @@ export interface ApiError {
 	providedIn: 'root',
 })
 export class Authorsservice {
-	private url = 'http://localhost:8000/api/authors';
+	//private url = 'http://localhost:8000/api/authors';
+	private url = endpoints.authors;
 
 	constructor(private http: HttpClient) {}
 

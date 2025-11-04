@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { endpoints } from './endpoints';
 
 export interface Message {
 	message: string;
@@ -29,7 +30,8 @@ export interface Data {
 	providedIn: 'root',
 })
 export class Loginservice {
-	private url = 'http://localhost:8000/api/';
+	//private url = 'http://localhost:8000/api/';
+	private url = endpoints.login;
 
 	constructor(private http: HttpClient) {}
 
